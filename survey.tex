@@ -1,4 +1,4 @@
-\documentclass[acmtog, authorversion]{acmart}
+\documentclass[acmtoc, authorversion]{acmart}
 
 \usepackage{booktabs} % For formal tables
 
@@ -49,35 +49,35 @@
 
 \author{Joel Bartelheimer}
 \affiliation{%
-  \institution{Technische Hochschule Mittelhessen}
-  \city{Giessen}
-  \state{Hessen}
-  \postcode{23185}
-  \country{Germany}}
+	\institution{Technische Hochschule Mittelhessen}
+	\city{Giessen}
+	\state{Hessen}
+	\postcode{23185}
+	\country{Germany}}
 \email{joel.bartelheimer@mni.thm.de}
 
 
 \renewcommand\shortauthors{Bartelheimer, J. }
 
 \begin{abstract}
-Multifrequency media access control has been well understood in
-general wireless ad hoc networks, while in wireless sensor networks,
-researchers still focus on single frequency solutions. In wireless
-sensor networks, each device is typically equipped with a single
-radio transceiver and applications adopt much smaller packet sizes
-compared to those in general wireless ad hoc networks. Hence, the
-multifrequency MAC protocols proposed for general wireless ad hoc
-networks are not suitable for wireless sensor network applications,
-which we further demonstrate through our simulation experiments. In
-this article, we propose MMSN, which takes advantage of
-multifrequency availability while, at the same time, takes into
-consideration the restrictions of wireless sensor networks. Through
-extensive experiments, MMSN exhibits the prominent ability to utilize
-parallel transmissions among neighboring nodes. When multiple physical
-frequencies are available, it also achieves increased energy
-efficiency, demonstrating the ability to work against radio
-interference and the tolerance to a wide range of measured time
-synchronization errors.
+	Multifrequency media access control has been well understood in
+	general wireless ad hoc networks, while in wireless sensor networks,
+	researchers still focus on single frequency solutions. In wireless
+	sensor networks, each device is typically equipped with a single
+	radio transceiver and applications adopt much smaller packet sizes
+	compared to those in general wireless ad hoc networks. Hence, the
+	multifrequency MAC protocols proposed for general wireless ad hoc
+	networks are not suitable for wireless sensor network applications,
+	which we further demonstrate through our simulation experiments. In
+	this article, we propose MMSN, which takes advantage of
+	multifrequency availability while, at the same time, takes into
+	consideration the restrictions of wireless sensor networks. Through
+	extensive experiments, MMSN exhibits the prominent ability to utilize
+	parallel transmissions among neighboring nodes. When multiple physical
+	frequencies are available, it also achieves increased energy
+	efficiency, demonstrating the ability to work against radio
+	interference and the tolerance to a wide range of measured time
+	synchronization errors.
 \end{abstract}
 
 
@@ -87,42 +87,34 @@ synchronization errors.
 % Please copy and paste the code instead of the example below.
 %
 \begin{CCSXML}
-<ccs2012>
-  <concept>
-  <concept_id>10010520.10010553.10010562</concept_id>
-  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
-  <concept_significance>500</concept_significance>
-  </concept>
-  <concept>
-  <concept_id>10010520.10010575.10010755</concept_id>
-  <concept_desc>Computer systems organization~Redundancy</concept_desc>
-  <concept_significance>300</concept_significance>
-  </concept>
-  <concept>
-  <concept_id>10010520.10010553.10010554</concept_id>
-  <concept_desc>Computer systems organization~Robotics</concept_desc>
-  <concept_significance>100</concept_significance>
-  </concept>
-  <concept>
-  <concept_id>10003033.10003083.10003095</concept_id>
-  <concept_desc>Networks~Network reliability</concept_desc>
-  <concept_significance>100</concept_significance>
-  </concept>
-</ccs2012>
+	<ccs2012>
+	<concept>
+	<concept_id>10011007.10011074.10011075.10011077</concept_id>
+	<concept_desc>Software and its engineering~Software design engineering</concept_desc>
+	<concept_significance>500</concept_significance>
+	</concept>
+	<concept>
+	<concept_id>10011007.10011074.10011075.10011078</concept_id>
+	<concept_desc>Software and its engineering~Software design tradeoffs</concept_desc>
+	<concept_significance>300</concept_significance>
+	</concept>
+	<concept>
+	<concept_id>10011007.10011074.10011075.10011079</concept_id>
+	<concept_desc>Software and its engineering~Software implementation planning</concept_desc>
+	<concept_significance>300</concept_significance>
+	</concept>
+	</ccs2012>
 \end{CCSXML}
 
-\ccsdesc[500]{Computer systems organization~Embedded systems}
-\ccsdesc[300]{Computer systems organization~Redundancy}
-\ccsdesc{Computer systems organization~Robotics}
-\ccsdesc[100]{Networks~Network reliability}
-
+\ccsdesc[500]{Software and its engineering~Software design engineering}
+\ccsdesc[300]{Software and its engineering~Software design tradeoffs}
+\ccsdesc[300]{Software and its engineering~Software implementation planning}
 %
 % End generated code
 %
 
 
-\keywords{Wireless sensor networks, media access control,
-multi-channel, radio interference, time synchronization}
+\keywords{design patter, observer pattern, event handling, data-flow language, reactive programming, user interface programming, scala}
 
 
 
@@ -132,22 +124,74 @@ multi-channel, radio interference, time synchronization}
 
 \section{Introduction}
 
+In contrast to traditional batch mode programs modern applications are reactive and event driven. 
+examples like the GUI 
+reactive is hard and errorprone, dealing with continuous event occourance and user input requires a considerable amount of engineering.
+A programming paradigm well suited for these event-driven and interative applications is reactive programming
+reactive programming gained popularity
 
-As a new technology, Wireless Sensor Networks (WSNs) has a wide
-range of applications \cite{Culler-01, Bahl-02, Akyildiz-01}, including
-environment monitoring, smart buildings, medical care, industrial and
-military applications. Among them, a recent trend is to develop
-commercial sensor networks that require pervasive sensing of both
-environment and human beings, for example, assisted living
-\cite{Akyildiz-02, Harvard-01,CROSSBOW} and smart homes
-\cite{Harvard-01, Adya-01,CROSSBOW}.
-% quote
-\begin{quote}
-  ``For these applications, sensor devices are incorporated into human
-  cloths \cite{Natarajan-01, Zhou-06, Bahl-02, Adya-01} for monitoring
-  health related information like EKG readings, fall detection, and
-  voice recognition''.
-\end{quote}
+early approach in reactive programming is the use of the observer Pattern
+
+in the paper ``Deprecating the Observer Pattern'' the authors criticize the use of the observer pattern for reactive programs,
+the title already is a hard claim by itself.
+
+
+
+\subsection{UI Event handling}
+
+\section{Reactive programming}
+
+\subsection{Functional reactive programming (FRP)}
+
+first in functional languages by~\cite{Elliott}
+
+signals behaviour~\cite{Bainomugisha:2013}
+
+\section{Observer Pattern}
+
+\cite{Gamma:1995}
+
+\subsection{Violations of software engineering principles}
+
+\subsubsection{Side-effects}
+
+the observer promotes side effects
+
+\subsubsection{Encapsulation}
+
+\subsubsection{Composability}
+
+\subsubsection{Resource management}
+
+\subsubsection{Separation of concerns}
+
+\subsubsection{Data consistency}
+
+\subsubsection{Uniformity}
+
+\subsubsection{Abstraction}
+
+\subsubsection{Semantic distance}
+
+\section{Scala.React}
+
+\subsection{First class events}
+
+\subsection{Reactor}
+
+\subsection{Embedded dataflow langugage}
+
+\section{Evolution of reactive programming frameworks}
+
+\subsection{Reactive databinding}
+
+Font-end frameworks inspired by the Flapjax reactive language~\cite{Meyerovich:2009}
+
+Metor example: ~\cite{hochhaus2016meteor}
+
+based on fl
+
+\subsection{Reactive streams}
 
 % Bibliography
 \bibliographystyle{ACM-Reference-Format}
