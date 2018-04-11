@@ -13,15 +13,15 @@ PDF = ${TEX:%.tex=%.pdf}
 all:  ${PDF}
 
 
-%.pdf:  %.dtx   $(PACKAGE).cls
-	pdflatex $<
-	- bibtex $*
-	pdflatex $<
-	- makeindex -s gind.ist -o $*.ind $*.idx
-	- makeindex -s gglo.ist -o $*.gls $*.glo
-	pdflatex $<
-	while ( grep -q '^LaTeX Warning: Label(s) may have changed' $*.log) \
-	do pdflatex $<; done
+# %.pdf:  %.dtx   $(PACKAGE).cls
+# 	pdflatex $<
+# 	- bibtex $*
+# 	pdflatex $<
+# 	- makeindex -s gind.ist -o $*.ind $*.idx
+# 	- makeindex -s gglo.ist -o $*.gls $*.glo
+# 	pdflatex $<
+# 	while ( grep -q '^LaTeX Warning: Label(s) may have changed' $*.log) \
+# 	do pdflatex $<; done
 
 %.cls:   %.ins %.dtx
 	pdflatex $<
