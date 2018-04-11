@@ -6,50 +6,105 @@
 \citestyle{acmauthoryear}
 \setcitestyle{square}
 
-%\usepackage{list­ings}
-
-\usepackage[ruled]{algorithm2e} % For algorithms
-\renewcommand{\algorithmcfname}{ALGORITHM}
-\SetAlFnt{\small}
-\SetAlCapFnt{\small}
-\SetAlCapNameFnt{\small}
-\SetAlCapHSkip{0pt}
-\IncMargin{-\parindent}
-
-% Metadata Information
-%\acmJournal{TOG}
-%\acmVolume{9}
-%\acmNumber{4}
-%\acmArticle{39}
-%\acmYear{2010}
-%\acmMonth{3}
-
-% Copyright
-%\setcopyright{acmcopyright}
-%\setcopyright{acmlicensed}
-%\setcopyright{rightsretained}
-%\setcopyright{usgov}
-\setcopyright{usgovmixed}
-%\setcopyright{cagov}
-%\setcopyright{cagovmixed}
-
-% DOI
-%\acmDOI{0000001.0000001_2}
-
-% Paper history
-\received{April 2018}
-%\received{March 2009}
-%\received[final version]{June 2009}
-%\received[accepted]{July 2009}
+\usepackage{listings}
+\usepackage{xcolor}
 
 
-% Document starts
-\begin{document}
-% Title portion
-\title{A survey on Deprecating the Observer Pattern}
 
-\author{Joel Bartelheimer}
-\affiliation{%
+\lstdefinelanguage{scala}{
+	morekeywords={abstract,case,catch,class,def,%
+	do,else,extends,false,final,finally,%
+	for,if,implicit,import,match,mixin,%
+	new,null,object,override,package,%
+	private,protected,requires,return,sealed,%
+	super,this,throw,trait,true,try,%
+	type,val,var,while,with,yield},
+	otherkeywords={=>,<-,<\%,<:,>:,\#,@},
+	sensitive=true,
+	morecomment=[l]{//},
+	morecomment=[n]{/*}{*/},
+	morestring=[b]",
+	morestring=[b]',
+	morestring=[b]"""
+	}
+	
+	\definecolor{dkgreen}{rgb}{0,0.6,0}
+	\definecolor{gray}{rgb}{0.5,0.5,0.5}
+	\definecolor{mauve}{rgb}{0.58,0,0.82}
+	
+	% \lstdefinestyle{myScalastyle}{
+	% 	frame=tb,
+	% 	language=scala,
+	% 	aboveskip=3mm,
+	% 	belowskip=3mm,
+	% 	showstringspaces=false,
+	% 	columns=flexible,
+	% 	basicstyle={\small\ttfamily},
+	% 	numbers=left,
+	% 	numberstyle=\tiny\color{gray},
+	% 	keywordstyle=\color{blue},
+	% 	commentstyle=\color{dkgreen},
+	% 	stringstyle=\color{mauve},
+	% 	frame=single,
+	% 	breaklines=true,
+	% 	breakatwhitespace=true,
+	% 	tabsize=2,
+	% }
+	\lstset{
+		basicstyle=\ttfamily,
+		captionpos=b,
+		%breaklines=true,
+		%showstringspaces=false,
+		%tabsize=2,
+		%frame=lines,
+		%numbers=left,
+		%numberstyle=\tiny,
+		%xleftmargin=2em,
+		%framexleftmargin=2em
+	}
+	
+	\usepackage[ruled]{algorithm2e} % For algorithms
+	\renewcommand{\algorithmcfname}{ALGORITHM}
+	\SetAlFnt{\small}
+	\SetAlCapFnt{\small}
+	\SetAlCapNameFnt{\small}
+	\SetAlCapHSkip{0pt}
+	\IncMargin{-\parindent}
+	
+	% Metadata Information
+	%\acmJournal{TOG}
+	%\acmVolume{9}
+	%\acmNumber{4}
+	%\acmArticle{39}
+	%\acmYear{2010}
+	%\acmMonth{3}
+	
+	% Copyright
+	%\setcopyright{acmcopyright}
+	%\setcopyright{acmlicensed}
+	%\setcopyright{rightsretained}
+	%\setcopyright{usgov}
+	\setcopyright{usgovmixed}
+	%\setcopyright{cagov}
+	%\setcopyright{cagovmixed}
+	
+	% DOI
+	%\acmDOI{0000001.0000001_2}
+	
+	% Paper history
+	\received{April 2018}
+	%\received{March 2009}
+	%\received[final version]{June 2009}
+	%\received[accepted]{July 2009}
+	
+	
+	% Document starts
+	\begin{document}
+	% Title portion
+	\title{A survey on Deprecating the Observer Pattern}
+	
+	\author{Joel Bartelheimer}
+	\affiliation{%
 	\institution{Technische Hochschule Mittelhessen}
 	\city{Giessen}
 	\state{Hessen}
@@ -138,7 +193,7 @@
 
 		\subsubsection{Side-effects}
 			Often several observers are used to implement a single Operation,
-			%e.g. a \lstinline|onClick| and a \lstinline|onRelease| observer are necessary to implement a drag and drop operation.
+			e.g. a \lstinline|onClick| and a \lstinline|val onRelease| observer are necessary to implement a drag and drop operation.
 			Therefore, the observer patterns promote side-effects and already on the API level.
 
 		\subsubsection{Encapsulation}
