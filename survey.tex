@@ -9,7 +9,9 @@
 \usepackage{listings}
 \usepackage{xcolor}
 
-
+\usepackage{tikz}
+\tikzset{main node/.style={circle,draw,minimum size=1cm,inner sep=0pt},
+            }
 
 \lstdefinelanguage{scala}{
 	morekeywords={abstract,case,catch,class,def,%
@@ -223,8 +225,22 @@
 			% C |
 			% |/
 			% D
-			Figure~\ref{fig:glitchgraph} shows a dependency graph 
-			
+
+			\begin{tikzpicture}
+				\begin{scope}[xshift=8cm]
+				\node[main node] (A) at (0,0) {$A$};
+				\node[main node] (B) at (0,-2) {$B$};
+				\node[main node] (C) at (3,-1) {$C$};
+				\node[main node] (D) at (6,-1) {$D$};
+				
+				\draw[->] (A) to (C);
+				\draw[->] (A) to (D);
+				\draw[->] (B) to (C);
+				\draw[->] (C) to (D);
+				\end{scope}
+			\end{tikzpicture}
+			Figure~\ref{fig:glitchgraph} shows a dependency graph where \textit{C} observes changes from \textit{A} and \textit{B} and \textit{D} observes the resulting \textit{C} and also \textit{A}.
+			When \textit{A} emits a change event, \textit{D} can not determine if \textit{C} has already consumed the change or not. 
 			
 			\item[Uniformity]
 			
@@ -264,6 +280,11 @@
 		based on fl
 
 	\subsection{Reactive streams}
+
+\section{Conclusion}
+
+%appendix: 
+%javafx not glitch free stack overflow: https://stackoverflow.com/questions/25139257/terminology-what-is-a-glitch-in-functional-reactive-programming-rx
 
 % Bibliography
 \bibliographystyle{ACM-Reference-Format}
