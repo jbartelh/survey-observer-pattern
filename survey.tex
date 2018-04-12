@@ -190,30 +190,48 @@
 	\subsection{Violations of software engineering principles}
 		In \cite{Maier:2012} it is shown by means of code exmple that the observer pattern violates a set of software engineering principles.
 		The violated principles are:
-
-		\subsubsection{Side-effects}
+		\begin{description}
+			\item[Side-effects]
 			Often several observers are used to implement a single Operation,
-			e.g. a \lstinline|onClick| and a \lstinline|val onRelease| observer are necessary to implement a drag and drop operation.
+			e.g. a \lstinline|onClick| and a \lstinline|onRelease| observer are necessary to implement a drag and drop operation.
 			Therefore, the observer patterns promote side-effects and already on the API level.
-
-		\subsubsection{Encapsulation}
+			
+			\item[Encapsulation]
 			In many cases multiple observers are used to simulate a state machine. 
 			The state, e.g. a dragged object, is stored in a variables within a shared scope.
 			As this broader scope of these shared variables escapes the scope of the observers, the observer pattern violates the encapsulation principle.
 			
-		\subsubsection{Composability}
+			\item[Composability]
+			Observers are registered during runtime on various installation points.
+			Even if multiple observers deal with a single concern, like a drag and drop operation, it is not possible to, e.g. easily add or remove drag behavior.
+			
+			\item[Resource management]
+			The installation and uninstallation of a observer has to be managed explititly.
+			The mouse movement for instance, shall only be observerd during a drag operation, due to performane. 
+			Therefor the client is in charge to manage the observers life-time.
+			
+			\item[Separation of concerns]
+			Usually a observer deals with more than on concern. For instance, recalculating and refreshing the state and also drawing the new state changes.
+			That a single observer deals with multiple concerns is not recommendable, the concerns shall be seperated.
 
-		\subsubsection{Resource management}
-
-		\subsubsection{Separation of concerns}
-
-		\subsubsection{Data consistency}
-
-		\subsubsection{Uniformity}
-
-		\subsubsection{Abstraction}
-
-		\subsubsection{Semantic distance}
+			\item[Data consistency]
+			The separation of concerns can be archived by limiting the concerns a observer deals with to one and then the observer itself publishes events on change.
+			Each concern can then observe its dependent concerns.
+			But unfortunately, there is no guarantee for data consistency when a observer listens to multiple changes. 
+			% B A
+			% |/|
+			% C |
+			% |/
+			% D
+			Figure~\ref{fig:glitchgraph} shows a dependency graph 
+			
+			
+			\item[Uniformity]
+			
+			\item[Abstraction]
+			
+			\item[Semantic distance]
+		\end{description}
 
 \section{Reactive programming}
 
