@@ -1,10 +1,12 @@
-\documentclass[format=acmtog]{acmart}
+\documentclass[acmsmall]{acmart}\settopmatter{printfolios=true,printccs=false,printacmref=false}
 
 \usepackage{booktabs} % For formal tables
 
+\usepackage{blindtext}
+
 % TOG prefers author-name bib system with square brackets
 \citestyle{acmauthoryear}
-\setcitestyle{square}
+%\setcitestyle{square}
 
 \usepackage{listings}
 \usepackage{xcolor}
@@ -28,97 +30,104 @@
 	morestring=[b]",
 	morestring=[b]',
 	morestring=[b]"""
-	}
+}
 	
-	\definecolor{dkgreen}{rgb}{0,0.6,0}
-	\definecolor{gray}{rgb}{0.5,0.5,0.5}
-	\definecolor{mauve}{rgb}{0.58,0,0.82}
-	
-	% \lstdefinestyle{myScalastyle}{
-	% 	frame=tb,
-	% 	language=scala,
-	% 	aboveskip=3mm,
-	% 	belowskip=3mm,
-	% 	showstringspaces=false,
-	% 	columns=flexible,
-	% 	basicstyle={\small\ttfamily},
-	% 	numbers=left,
-	% 	numberstyle=\tiny\color{gray},
-	% 	keywordstyle=\color{blue},
-	% 	commentstyle=\color{dkgreen},
-	% 	stringstyle=\color{mauve},
-	% 	frame=single,
-	% 	breaklines=true,
-	% 	breakatwhitespace=true,
-	% 	tabsize=2,
-	% }
-	\lstset{
-		basicstyle=\ttfamily,
-		captionpos=b,
-		%breaklines=true,
-		%showstringspaces=false,
-		%tabsize=2,
-		%frame=lines,
-		%numbers=left,
-		%numberstyle=\tiny,
-		%xleftmargin=2em,
-		%framexleftmargin=2em
-	}
-	
-	\usepackage[ruled]{algorithm2e} % For algorithms
-	\renewcommand{\algorithmcfname}{ALGORITHM}
-	\SetAlFnt{\small}
-	\SetAlCapFnt{\small}
-	\SetAlCapNameFnt{\small}
-	\SetAlCapHSkip{0pt}
-	\IncMargin{-\parindent}
-	
-	% Metadata Information
-	%\acmJournal{TOG}
-	%\acmVolume{9}
-	%\acmNumber{4}
-	%\acmArticle{39}
-	%\acmYear{2010}
-	%\acmMonth{3}
-	
-	% Copyright
-	%\setcopyright{acmcopyright}
-	%\setcopyright{acmlicensed}
-	%\setcopyright{rightsretained}
-	%\setcopyright{usgov}
-	\setcopyright{usgovmixed}
-	%\setcopyright{cagov}
-	%\setcopyright{cagovmixed}
-	
-	% DOI
-	%\acmDOI{0000001.0000001_2}
-	
-	% Paper history
-	\received{April 2018}
-	%\received{March 2009}
-	%\received[final version]{June 2009}
-	%\received[accepted]{July 2009}
-	
-	
-	% Document starts
-	\begin{document}
-	% Title portion
-	\title{A survey on Deprecating the Observer Pattern}
-	
-	\author{Joel Bartelheimer}
-	\affiliation{%
-	\institution{Technische Hochschule Mittelhessen}
-	\city{Giessen}
-	\state{Hessen}
-	\postcode{23185}
-	\country{Germany}}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+% \lstdefinestyle{myScalastyle}{
+% 	frame=tb,
+% 	language=scala,
+% 	aboveskip=3mm,
+% 	belowskip=3mm,
+% 	showstringspaces=false,
+% 	columns=flexible,
+% 	basicstyle={\small\ttfamily},
+% 	numbers=left,
+% 	numberstyle=\tiny\color{gray},
+% 	keywordstyle=\color{blue},
+% 	commentstyle=\color{dkgreen},
+% 	stringstyle=\color{mauve},
+% 	frame=single,
+% 	breaklines=true,
+% 	breakatwhitespace=true,
+% 	tabsize=2,
+% }
+\lstset{
+	basicstyle=\ttfamily,
+	captionpos=b,
+	%breaklines=true,
+	%showstringspaces=false,
+	%tabsize=2,
+	%frame=lines,
+	%numbers=left,
+	%numberstyle=\tiny,
+	%xleftmargin=2em,
+	%framexleftmargin=2em
+}
+
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+\bibliographystyle{ACM-Reference-Format}
+
+% Metadata Information
+\acmJournal{PACMPL}
+\acmVolume{1}
+\acmNumber{CONF} % CONF = POPL or ICFP or OOPSLA
+\acmArticle{1}
+\acmYear{2018}
+\acmMonth{4}
+
+% Copyright
+\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+% DOI
+%\acmDOI{0000001.0000001_2}
+
+% Paper history
+\received{April 2018}
+%\received{March 2009}
+%\received[final version]{June 2009}
+%\received[accepted]{July 2009}
+\usepackage{layouts}
+
+\usepackage[belowskip=-15pt,aboveskip=0pt]{caption}
+
+% Document starts
+\begin{document}
+
+%\setlength{\textfloatsep}{\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
+% Title portion
+\title{A survey on Deprecating the Observer Pattern}
+
+\author{Joel Bartelheimer}
+\affiliation{%
+\institution{Technische Hochschule Mittelhessen--University of Applied Sciences}
+\city{Giessen}
+\state{Hessen}
+\postcode{35390}
+\country{Germany}}
 \email{joel.bartelheimer@mni.thm.de}
 
 
 \renewcommand\shortauthors{Bartelheimer, J. }
 
 \begin{abstract}
-	insert abstract here
+	\blindtext
 \end{abstract}
 
 
@@ -187,10 +196,41 @@
 
 
 \section{Observer Pattern}
-	\cite{Gamma:1995}
+	The observer pattern was originally published in \cite{Gamma:1995}. 
+	It is one of the behavior pattern by the Gang of Four. 
+	The intent of the observer pattern is a one-to-many dependency with an automatic change propagation.
+	When the state of an object (one) changes, all it dependents objects (many) are notified automatically.
+
+	\begin{figure}[H]
+		\includegraphics{img/observer.jpg}
+		\caption{Structure of the observer pattern~\cite{Gamma:1995}}
+		\label{fig:observer}
+	\end{figure}
+
+	The observer pattern consists of four components, their relations and methods are shown in figure~\ref{fig:observer}.
+
+	\begin{description}
+		\item[Subject] Provides an interface for installing (\textit{attach}) and uninstall (\textit{detach}) observers. 
+		Moreover the subject knows its observers and the number of observers is not limited.
+		\item[Observer] \textit{update} is the observers updateing interface for receiving changes in a subject.
+		\item[ConcreteSubject] Stores the state, where the observers are interested in and also initiates the notification when the state changes.
+		\item[ConcreteObserver] Implements a updating interface to keep its stored state of the subject consistent. 
+	\end{description}
+
+	In the original source various slightly different implementation are discussed. 
+	One deals with the update and how the observers receive the changed data. 
+	Often the subject passes additional information as an argument to the \textit{update} method, e.g. a changed mouse position. 
+	To avoid observer-specific update protocols, two extreme cases -- \textit{push model} and \textit{pull model}-- are described.
+	With the \textit{push model}, the subject sends detailed infromation to the observers about the changed state, even if the observers are not interested. 
+	On the opposite, nothing is send by the subject only the change notification, the observers have to ask for the informations afterwards~\cite{Gamma:1995}.
+	Usually implementaions, e.g. the Java \textit{Observable} implementation~\cite{oracleObservable}, support both models.
+
+	As a typical use case and also as motivation for the observer pattern, graphical user interface are mentioned.
+	Many GUI related frameworks closely follow the observer pattern, e.g. Smalltalks Model/View/Controller and Java Swing~\cite{Gamma:1995,Maier:2012}
 
 	\subsection{Violations of software engineering principles}
-		In \cite{Maier:2012} it is shown by means of code exmple that the observer pattern violates a set of software engineering principles.
+		In \cite{Maier:2012} it is shown by means of a code exmple that the observer pattern violates a set of software engineering principles,
+		particularly for the use of event handling in interactive GUI applications.
 		The violated principles are:
 		\begin{description}
 			\item[Side-effects]
@@ -208,8 +248,8 @@
 			Even if multiple observers deal with a single concern, like a drag and drop operation, it is not possible to, e.g. easily add or remove drag behavior.
 			
 			\item[Resource management]
-			The installation and uninstallation of a observer has to be managed explititly.
-			The mouse movement for instance, shall only be observerd during a drag operation, due to performane. 
+			The installation and uninstallation of a observer has to be managed explicitly.
+			The mouse movement for instance, should only be observed during a drag operation, due to performane. 
 			Therefor the client is in charge to manage the observers life-time.
 			
 			\item[Separation of concerns]
@@ -225,28 +265,40 @@
 			% C |
 			% |/
 			% D
-
-			\begin{tikzpicture}
-				\begin{scope}[xshift=8cm]
-				\node[main node] (A) at (0,0) {$A$};
-				\node[main node] (B) at (0,-2) {$B$};
-				\node[main node] (C) at (3,-1) {$C$};
-				\node[main node] (D) at (6,-1) {$D$};
-				
-				\draw[->] (A) to (C);
-				\draw[->] (A) to (D);
-				\draw[->] (B) to (C);
-				\draw[->] (C) to (D);
-				\end{scope}
-			\end{tikzpicture}
+			\begin{figure}[H]
+				\begin{tikzpicture}
+					\begin{scope}[xshift=8cm]
+						\node[main node] (A) at (0,0) {$A$};
+						\node[main node] (B) at (0,-2) {$B$};
+						\node[inner sep=0,minimum size=0] (K1) at (2,0) {};
+						\node[inner sep=0,minimum size=0] (K3) at (2,-2) {};
+						\node[main node] (C) at (3,-1) {$C$};
+						\node[inner sep=0,minimum size=0] (K2) at (5,0) {};
+						\node[main node] (D) at (6,-1) {$D$};
+						
+						\draw[-] (A) to (K1);
+						\draw[->] (K1) to (C);
+						\draw[-] (K1) to (K2);
+						\draw[->] (K2) to (D);
+						\draw[-] (B) to (K3);
+						\draw[->] (K3) to (C);
+						\draw[->] (C) to (D);
+					\end{scope}
+				\end{tikzpicture}
+				\caption{Dependency graph}
+				\label{fig:glitchgraph}
+			\end{figure}
 			Figure~\ref{fig:glitchgraph} shows a dependency graph where \textit{C} observes changes from \textit{A} and \textit{B} and \textit{D} observes the resulting \textit{C} and also \textit{A}.
 			When \textit{A} emits a change event, \textit{D} can not determine if \textit{C} has already consumed the change or not. 
-			
+			The short moment, where \textit{C} has not consumed the change event, is called a \textit{glitch}.
 			\item[Uniformity]
-			
+			Every subject provides its own installation point for observers, which decreases code uniformity.
 			\item[Abstraction]
-			
+			The use of heavyweight interfaces is promoted by the observer pattern. 
+			Often, much more methods than just one to install a specific observer is provided. 
+			Therefore, it is not possible to abstract over a precise event source, e.g. when we want to use pointer events instead of mouse events.
 			\item[Semantic distance]
+			The observer pattern reverses the control flow -- the subject invokes the \lstinline|update()| method of the observer -- which results in more boilerplate code and makes the code harder to understand.
 		\end{description}
 
 \section{Reactive programming}
@@ -265,6 +317,8 @@
 	\subsection{Reactor}
 
 	\subsection{Embedded dataflow langugage}
+
+	\subsection{Glitch avoidance}
 
 \section{Evolution of reactive programming frameworks}
 
@@ -287,7 +341,6 @@
 %javafx not glitch free stack overflow: https://stackoverflow.com/questions/25139257/terminology-what-is-a-glitch-in-functional-reactive-programming-rx
 
 % Bibliography
-\bibliographystyle{ACM-Reference-Format}
 \bibliography{sources}
 
 \end{document}
