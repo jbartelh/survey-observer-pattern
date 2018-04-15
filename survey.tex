@@ -212,7 +212,7 @@
 	\begin{description}
 		\item[Subject] Provides an interface for installing (\textit{attach}) and uninstall (\textit{detach}) observers. 
 		Moreover the subject knows its observers and the number of observers is not limited.
-		\item[Observer] \textit{update} is the observers updateing interface for receiving changes in a subject.
+		\item[Observer] The \textit{update} method is the observers updateing interface for receiving changes in a subject.
 		\item[ConcreteSubject] Stores the state, where the observers are interested in and also initiates the notification when the state changes.
 		\item[ConcreteObserver] Implements a updating interface to keep its stored state of the subject consistent. 
 	\end{description}
@@ -225,11 +225,12 @@
 	On the opposite, nothing is send by the subject only the change notification, the observers have to ask for the informations afterwards~\cite{Gamma:1995}.
 	Usually implementaions, e.g. the Java \textit{Observable} implementation~\cite{oracleObservable}, support both models.
 
-	As a typical use case and also as motivation for the observer pattern, graphical user interfaces are mentioned.
-	Therefore many GUI related frameworks closely follow the observer pattern, e.g. Smalltalks Model/View/Controller and Java Swing~\cite{Gamma:1995,Maier:2010}
+	As a typical use case and also as motivation for the observer pattern, graphical user interfaces are mentioned in the original source.
+	Therefore many GUI related frameworks closely follow the observer pattern, e.g. Smalltalks Model/View/Controller or Java Swing~\cite{Gamma:1995,Maier:2010}
 
 	\subsection{Violations of software engineering principles}
-		In \cite{Maier:2012} it is shown by means of a code exmple that the observer pattern violates a set of software engineering principles,
+		%With the Observer design pattern the event consumer can be decouple from the source of the event.
+		In \cite{Maier:2012} it is shown by means of code exmples that the observer pattern violates a set of software engineering principles,
 		particularly for the use of event handling in interactive GUI applications.
 		The violated principles are:
 		\begin{description}
@@ -300,24 +301,34 @@
 			\item[Semantic distance]
 			The observer pattern reverses the control flow -- the subject invokes the \lstinline|update()| method of the observer -- which results in more boilerplate code and makes the code harder to understand.
 		\end{description}
-
-
+		
 		\cite{Gamma:1995} lack chaining and composing multiple observer is completle missing
 		nearly half of the violations are related to dealing with multiple observers
 
 \section{Reactive programming}
-	Reactive programming is a paradigm for interactive and event-driven applications.
-	support develompent of reactive applications via dedicated languague abstractions
-	basic abstractions are:
+	Reactive programming is a paradigm which provides dedicated programming abstraction for developing interactive and event-driven applications.
+	As already mentioned in the introduction, the development of such reactive application is not an easy task. It is 
+	
+	by expressing complex reactive behavior in an intuitive and declarative way\cite{Salvaneschi:2017}
 
+	\begin{description}
+		\item[Declarativeness] Instead of computational steps, to derive a new component state based on a prior state,
+		programmers address \textit{how} components functionally depend on each other.
+		\item[Abstraction over change propagation] Change Propagation of dependent values is done implicit by the underlying runtime instead of manually by the developer.
+		\item[Composability] Reactive computations can be composed to more complex computations by means of provided abstractions (e.g., combinators/operator for event streams).
+		\item[Favoring data flow over control flow] Normally the excecution of an application follows the control flow. 
+		In reactive programming the computation is driven by events and data and how they flow through the system.
+	\end{description}
+	
+	basic abstractions are:
 	time-varying values(signals or behaviors)
 	event streams
 	automatic tracking of dependencies
 	automated change propagation
 	\cite{Salvaneschi:2015}
 
-	\subsection{Functional reactive programming (FRP)}
-
+	\subsection{Functional reactive programming}
+		Reactive programming has its origin in Functional reactive programming, a variation for strictly functional languages. 
 		first in functional languages by~\cite{Elliott}
 
 		signals behaviour~\cite{Bainomugisha:2013}
@@ -355,6 +366,8 @@
 	\subsection{Reactive streams}
 
 \section{Conclusion}
+
+
 
 reactive programming gained popularity~\cite{reactiveManifesto2014}, also spread to other fields like cloud computing and big data \cite{Salvaneschi:2015}
 
