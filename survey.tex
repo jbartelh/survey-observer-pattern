@@ -79,9 +79,9 @@
 
 % Metadata Information
 \acmJournal{PACMPL}
-\acmVolume{1}
+%\acmVolume{1}
 \acmNumber{CONF} % CONF = POPL or ICFP or OOPSLA
-\acmArticle{1}
+%\acmArticle{1}
 \acmYear{2018}
 \acmMonth{4}
 
@@ -225,8 +225,8 @@
 	On the opposite, nothing is send by the subject only the change notification, the observers have to ask for the informations afterwards~\cite{Gamma:1995}.
 	Usually implementaions, e.g. the Java \textit{Observable} implementation~\cite{oracleObservable}, support both models.
 
-	As a typical use case and also as motivation for the observer pattern, graphical user interface are mentioned.
-	Many GUI related frameworks closely follow the observer pattern, e.g. Smalltalks Model/View/Controller and Java Swing~\cite{Gamma:1995,Maier:2012}
+	As a typical use case and also as motivation for the observer pattern, graphical user interfaces are mentioned.
+	Therefore many GUI related frameworks closely follow the observer pattern, e.g. Smalltalks Model/View/Controller and Java Swing~\cite{Gamma:1995,Maier:2010}
 
 	\subsection{Violations of software engineering principles}
 		In \cite{Maier:2012} it is shown by means of a code exmple that the observer pattern violates a set of software engineering principles,
@@ -301,7 +301,20 @@
 			The observer pattern reverses the control flow -- the subject invokes the \lstinline|update()| method of the observer -- which results in more boilerplate code and makes the code harder to understand.
 		\end{description}
 
+
+		\cite{Gamma:1995} lack chaining and composing multiple observer is completle missing
+		nearly half of the violations are related to dealing with multiple observers
+
 \section{Reactive programming}
+	Reactive programming is a paradigm for interactive and event-driven applications.
+	support develompent of reactive applications via dedicated languague abstractions
+	basic abstractions are:
+
+	time-varying values(signals or behaviors)
+	event streams
+	automatic tracking of dependencies
+	automated change propagation
+	\cite{Salvaneschi:2015}
 
 	\subsection{Functional reactive programming (FRP)}
 
@@ -321,9 +334,15 @@
 	\subsection{Glitch avoidance}
 
 \section{Evolution of reactive programming frameworks}
+	
+	different types of frameworks, research driven or by practitioners in the software community
+	research driven implement all principles and abstractions
+	practitioners focus on a specific fields like gu
 
 	with lambda-expressions and stream java added data-flow elements to the language for more declarative programming
 	added in java 8 and already extended in java 9
+
+	most 
 
 	\subsection{Reactive databinding}
 
@@ -336,6 +355,10 @@
 	\subsection{Reactive streams}
 
 \section{Conclusion}
+
+reactive programming gained popularity~\cite{reactiveManifesto2014}, also spread to other fields like cloud computing and big data \cite{Salvaneschi:2015}
+
+glitch avoidance not always important. only in singlethreaded push based enviroments like gui-threads
 
 %appendix: 
 %javafx not glitch free stack overflow: https://stackoverflow.com/questions/25139257/terminology-what-is-a-glitch-in-functional-reactive-programming-rx
