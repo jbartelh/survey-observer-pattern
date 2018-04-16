@@ -393,12 +393,18 @@
 	Scala.React supports imperative as well as funtional styled programming.
 	For the change propagation the push-based approach is used.
 	
+	%developed to show how its done without observer
+
 	%A more in-depth description about 
-	\subsection{First class events and signals}
+	%\subsection{First class events and signals}
 
-	\subsection{Embedded dataflow language}
+	%\subsection{Embedded dataflow language}
 
-	\subsection{Reactor}
+	%\subsection{Reactor}
+	\subsection{Abstractions}
+
+	\subsection{Example}
+
 	based on ..\cite{coplien1995reactor}
 
 	\noindent\begin{minipage}{.48\textwidth}
@@ -446,10 +452,6 @@ Reactor.loop { self =>
 	Scala.React~\cite{Maier:2012} and REScala~\cite{Salvaneschi:2014} embeds all of the reactive abstractions into existing languages.
 	Whereas frameworks developed by communities and practitioners usually either events or behaviors implement.
 
-
-	with lambda-expressions and stream java added data-flow elements to the language for more declarative programming
-	added in java 8 and already extended in java 9
-
 	\subsection{Reactive data binding}
 		The abstraction of behaviors or time-varying values is adapted by many GUI related frameworks.
 		These frameworks are often inspired by Flapjax and their 
@@ -471,8 +473,23 @@ Reactor.loop { self =>
 		which limits the possibilities of composing multiple properties. 
 		No declarative \textit{map}-operator is available to transform the format of the time.
 
-		Other popular front-end frameworks besides JavaFX with reactive databinding functions are Meteor, React.js and Bacon.js.
+		Other popular front-end frameworks besides JavaFX with reactive databinding functions are Meteor and React.js.
 	\subsection{Reactive streams}
+	GUI applications are normally single-threaded or they restrict the computation to one specific GUI-thread.
+	Many other Systems such as Web-Services and big data systems do not have such limitations. 
+	To manage streams of data in an asynchronous fashion and also enable the parallel use of computing resources, 
+	frameworks with the event abstraction where developed.
+	In this area, a huge step is made by an expert group named \textit{Reactive Streams}, by developing a standardized API for event streams for Java.
+	%http://www.reactive-streams.org/reactive-streams-1.0.2-javadoc/org/reactivestreams/package-summary.html
+
+	The Reactive Streams API provides first-class event abstractions based on generic types.
+	Since the introduction of lambda-expressions and streams in Java Version 8, a more declarative programming style is promoted also in java.
+	The implementing frameworks of the \textit{Reactive Streams} API are making heavy use of this declarative programming style.
+	Furthermore, they provide declarative operators and combinators for Composability by adapting concepts from \ac{frp}.
+
+	Popular frameworks, who implement the Reactive Streams API are \textit{Akka-Stream}~\cite{akka:2018}, 
+	the new Version of \textit{ReactiveX}~\cite{reactiveX:2018}, 
+	\textit{Project Reactor}~\cite{projectReactor:2018} and the Flow-API introduced with Java Version 9~\cite{javaflow201800}.
 
 \section{Conclusion}
 
