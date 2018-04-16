@@ -221,4 +221,4 @@ TSWLatexianTemp*
 *-tags.tex
 
 # generated pdf
-*.pdf
+#*.pdf

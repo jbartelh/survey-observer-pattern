@@ -375,19 +375,25 @@
 
 	\subsection{Different levels of abstractions}
 		Many implementations of rective programming slightly differ in there level of abstraction.
-		Some are restricted to functional or imperative programming, and yet other support both.
-		The way, how the changes are propagated can also differ, so alled Evaluation model.
+		Some are restricted to functional or imperative programming, and yet other support both\cite{Maier:2010}.
+		A further partition of the base abstraction \textit{event} into one ore many events, 
+		can also be found~\cite{reactiveX:2018,projectReactor:2018}.
+
+		The Evaluation model, which describes how the changes are propagated, can also differ.
 		Some implementations uses a \textit{pull-based} approache, where the required computation needs to pull the value from the Source.
 		In the \textit{push-based} approache, on the other hand the source pushes changes as soon as new data arrives.
 		Further informations and advantages and disadvantages about the two evaluation models can be found in~\cite{Bainomugisha:2013}.
 
 \section{Scala.React}
-	\textit{Scala.React}~\cite{Maier:2012} is a language extension to provide the reactive programming abstractions.
+	\textit{Scala.React}~\cite{Maier:2012} is a language extension to provide composable reactive programming abstractions.
 	As the name already indicates, it is for the statically typed Scala programming language. 
-	Therefore, it provides a typesafe implementation of the reactive abstractions. 
-	Scala.React supports 
-	\subsection{First class events}
+	Therefore, it provides a typesafe implementation of the abstractions and for the composing. 
+	Scala.React supports imperative as well as funtional styled programming.
+	For the change propagation the push-based approach is used.
 
+	%A more in-depth description about 
+	\subsection{First class events and signals}
+	
 	\subsection{Reactor}
 
 	\subsection{Embedded dataflow language}
