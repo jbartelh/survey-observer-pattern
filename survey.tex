@@ -37,24 +37,25 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
-% \lstdefinestyle{myScalastyle}{
-% 	frame=tb,
-% 	language=scala,
-% 	aboveskip=3mm,
-% 	belowskip=3mm,
-% 	showstringspaces=false,
-% 	columns=flexible,
-% 	basicstyle={\small\ttfamily},
-% 	numbers=left,
-% 	numberstyle=\tiny\color{gray},
-% 	keywordstyle=\color{blue},
-% 	commentstyle=\color{dkgreen},
-% 	stringstyle=\color{mauve},
-% 	frame=single,
-% 	breaklines=true,
-% 	breakatwhitespace=true,
-% 	tabsize=2,
-% }
+\lstdefinestyle{myScalastyle}{
+	%frame=tb,
+	language=scala,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	%basicstyle={\small\ttfamily},
+	basicstyle={\footnotesize\ttfamily},
+	%numbers=left,
+	%numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	frame=single,
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=2,
+}
 \lstset{
 	basicstyle=\ttfamily,
 	captionpos=b,
@@ -82,7 +83,7 @@
 \acmJournal{CSUR}
 %\acmVolume{1}
 %\acmNumber{CONF} % CONF = POPL or ICFP or OOPSLA
-\acmArticle{1}
+\acmArticle{2}
 \acmYear{2018}
 \acmMonth{4}
 
@@ -105,6 +106,7 @@
 %\received[final version]{June 2009}
 %\received[accepted]{July 2009}
 \usepackage{layouts}
+\usepackage{parcolumns}
 
 %\usepackage[belowskip=-15pt,aboveskip=0pt]{caption}
 
@@ -390,42 +392,93 @@
 	Therefore, it provides a typesafe implementation of the abstractions and for the composing. 
 	Scala.React supports imperative as well as funtional styled programming.
 	For the change propagation the push-based approach is used.
-
+	
 	%A more in-depth description about 
 	\subsection{First class events and signals}
-	
-	\subsection{Reactor}
 
 	\subsection{Embedded dataflow language}
+
+	\subsection{Reactor}
+	based on ..\cite{coplien1995reactor}
+
+	\noindent\begin{minipage}{.48\textwidth}
+		\begin{lstlisting}[style=myScalastyle,caption={Observer pattern},frame=none]{Name}
+var path: Path = null
+val moveObserver = { (event: MouseEvent) =>
+	path.lineTo(event.position)
+	draw(path)
+}
+control.addMouseDownObserver { event =>
+	path = new Path(event.position)
+	control.addMouseMoveObserver(moveObserver)
+}
+control.addMouseUpObserver { event =>
+	control.removeMouseMoveObserver(moveObserver)
+	path.close()
+	draw(path)
+}
+		\end{lstlisting}
+		\end{minipage}\hfill
+		\begin{minipage}{.48\textwidth}
+		\begin{lstlisting}[style=myScalastyle,caption={Scala.React},frame=none]{Name}
+Reactor.loop { self =>
+	// step 1
+	val path = new Path((self await mouseDown).position)
+	self.loopUntil(mouseUp) { // step 2
+		val m = self awaitNext mouseMove
+		path.lineTo(m.position)
+		draw(path)
+	}
+	path.close() // step 3
+	draw(path)
+}
+		\end{lstlisting}
+		\end{minipage}
 
 	\subsection{Glitch avoidance}
 
 \section{Evolution of reactive programming frameworks}
-	
-	different types of frameworks, research driven or by practitioners in the software community
-	research driven implement all principles and abstractions
-	practitioners focus on a specific fields like gu
+	Since 2010, when~\cite{Maier:2010} was published, reactive programming, 
+	frameworks for reactive programming and even languages evolved.
+	Recent initiatives like the \textit{Reactive Manifesto}~\cite{reactiveManifesto2014} and
+	\textit{Reactive Streams}~\cite{reactiveStreams} shows the gaining interest from the software community and practitioners.
+	Research-driven reactive frameworks such as Flapjax~\cite{Meyerovich:2009}, 
+	Scala.React~\cite{Maier:2012} and REScala~\cite{Salvaneschi:2014} embeds all of the reactive abstractions into existing languages.
+	Whereas frameworks developed by communities and practitioners usually either events or behaviors implement.
+
 
 	with lambda-expressions and stream java added data-flow elements to the language for more declarative programming
 	added in java 8 and already extended in java 9
 
-	most 
+	\subsection{Reactive data binding}
+		The abstraction of behaviors or time-varying values is adapted by many GUI related frameworks.
+		These frameworks are often inspired by Flapjax and their 
+		reactivity features can be classified as reactive data binding~\cite{Maier:2010}.
 
-	\subsection{Reactive databinding}
+		\begin{lstlisting}[style=myScalastyle,frame=none,language=java, caption={JavaFX-properties: The time, 
+			provided by the \lstinline|timeService| is bound to a formatter-binding and the 
+			formatted time is then bound to a UI-Label called \lstinline|clock|
+			}, label={lst:jfx}]
+			IntegerProperty timeProperty = timeService.timeProperty();
+			StringBinding timeFormatted = Bindings.createStringBinding(
+				() -> DATEFORMAT.format(timeProperty.get()),
+				timeProperty);
+				clock.textProperty().bind(timeFormatted);
+		\end{lstlisting}
+		The listing~\ref{lst:jfx} shows a JavaFX example. 
+		In JavaFX, the term \textit{property} is used for the abstraction instead of behavior. 
+		The example also shows JavaFX's lack of first-class abstractions,
+		which limits the possibilities of composing multiple properties. 
+		No declarative \textit{map}-operator is available to transform the format of the time.
 
-		Font-end frameworks inspired by the Flapjax reactive language~\cite{Meyerovich:2009}
-
-		Metor example: ~\cite{hochhaus2016meteor}
-
-		based on fl
-
+		Other popular front-end frameworks besides JavaFX with reactive databinding functions are Meteor, React.js and Bacon.js.
 	\subsection{Reactive streams}
 
 \section{Conclusion}
 
 
 %as seen, reactive frameworks evolved and 
-reactive programming gained popularity~\cite{reactiveManifesto2014}, also spread to other fields like cloud computing and big data \cite{Salvaneschi:2015}
+reactive programming gained popularity also spread to other fields like cloud computing and big data \cite{Salvaneschi:2015}
 
 glitch avoidance not always important. only in singlethreaded push based enviroments like gui-threads
 
