@@ -78,10 +78,10 @@
 \bibliographystyle{ACM-Reference-Format}
 
 % Metadata Information
-\acmJournal{PACMPL}
+\acmJournal{CSUR}
 %\acmVolume{1}
-\acmNumber{CONF} % CONF = POPL or ICFP or OOPSLA
-%\acmArticle{1}
+%\acmNumber{CONF} % CONF = POPL or ICFP or OOPSLA
+\acmArticle{1}
 \acmYear{2018}
 \acmMonth{4}
 
@@ -168,10 +168,17 @@
 %input
 
 \section{Introduction}
+	%batch programs -> reactive application
+	%hard to programm
+	%we need better programmin abstractions for reactive programming
+	%first approache is the observer pattern
+	%researcher addressed the problems
+	%new languages features and abstractions for the new problems
+	
 
 	In contrast to traditional batch mode programs modern applications are reactive and event driven. 
 	examples like the GUI 
-	reactive is hard and errorprone, dealing with continuous event occourance and user input requires a considerable amount of engineering.
+	reactive is hard and errorprone, dealing with continuous event occurrence and user input requires a considerable amount of engineering.
 	
 	quote an Adobe presentation from 2007~\cite{parent2006possible} on current production systems:
 	\begin{itemize}
@@ -197,7 +204,7 @@
 
 \section{Observer Pattern}
 	The observer pattern was originally published in \cite{Gamma:1995}. 
-	It is one of the behavior pattern by the Gang of Four. 
+	It is one of the behavior patterns by the Gang of Four. 
 	The intent of the observer pattern is a one-to-many dependency with an automatic change propagation.
 	When the state of an object (one) changes, all it dependents objects (many) are notified automatically.
 
@@ -211,25 +218,27 @@
 
 	\begin{description}
 		\item[Subject] Provides an interface for installing (\textit{attach}) and uninstall (\textit{detach}) observers. 
-		Moreover the subject knows its observers and the number of observers is not limited.
-		\item[Observer] The \textit{update} method is the observers updateing interface for receiving changes in a subject.
+		Moreover, the subject knows its observers and the number of observers is not limited.
+		\item[Observer] The \textit{update} method is the observers updating interface for receiving changes in a subject.
 		\item[ConcreteSubject] Stores the state, where the observers are interested in and also initiates the notification when the state changes.
-		\item[ConcreteObserver] Implements a updating interface to keep its stored state of the subject consistent. 
+		\item[ConcreteObserver] Implements an updating interface to keep its stored state of the subject consistent. 
 	\end{description}
 
 	In the original source various slightly different implementation are discussed. 
-	One deals with the update and how the observers receive the changed data. 
+	One of them deals with the update and how the observers receive the changed data. 
 	Often the subject passes additional information as an argument to the \textit{update} method, e.g. a changed mouse position. 
 	To avoid observer-specific update protocols, two extreme cases -- \textit{push model} and \textit{pull model}-- are described.
-	With the \textit{push model}, the subject sends detailed infromation to the observers about the changed state, even if the observers are not interested. 
-	On the opposite, nothing is send by the subject only the change notification, the observers have to ask for the informations afterwards~\cite{Gamma:1995}.
-	Usually implementaions, e.g. the Java \textit{Observable} implementation~\cite{oracleObservable}, support both models.
+	With the \textit{push model}, the subject sends detailed information to the observers about the changed state, even if the observers are not interested. 
+	On the opposite, nothing is sent by the subject only the change notification, the observers have to ask for the information afterward~\cite{Gamma:1995}.
+	Usually implementations, e.g. the Java \textit{Observable} implementation~\cite{oracleObservable}, support both models.
 
-	As a typical use case and also as motivation for the observer pattern, graphical user interfaces are mentioned in the original source.
-	Therefore many GUI related frameworks closely follow the observer pattern, e.g. Smalltalks Model/View/Controller or Java Swing~\cite{Gamma:1995,Maier:2010}
-
+	%why the observer for event handling
+	For event handling, the subject receives the actual event, e.g. a mouse click, and notifies all its observers.
+	And because of the Observer pattern, the event consumers are decouple from the source of the event. 
+	Therefore, typical use cases for the observer pattern are graphical user interfaces.
+	Also many GUI related frameworks closely follow the observer pattern, e.g. Smalltalk's Model/View/Controller or Java Swing~\cite{Gamma:1995,Maier:2010}.
+	%but.. 
 	\subsection{Violations of software engineering principles}
-		%With the Observer design pattern the event consumer can be decouple from the source of the event.
 		In \cite{Maier:2012} it is shown by means of code exmples that the observer pattern violates a set of software engineering principles,
 		particularly for the use of event handling in interactive GUI applications.
 		The violated principles are:
@@ -302,35 +311,53 @@
 			The observer pattern reverses the control flow -- the subject invokes the \lstinline|update()| method of the observer -- which results in more boilerplate code and makes the code harder to understand.
 		\end{description}
 		
-		\cite{Gamma:1995} lack chaining and composing multiple observer is completle missing
-		nearly half of the violations are related to dealing with multiple observers
+		Nearly half of the violations are caused by dealing with multiple observers.
+		But exactly the feature of chaining and composing multiple observers together is not mentioned in the original source~\cite{Gamma:1995}.
 
 \section{Reactive programming}
-	Reactive programming is a paradigm which provides dedicated programming abstraction for developing interactive and event-driven applications.
-	As already mentioned in the introduction, the development of such reactive application is not an easy task. It is 
-	
-	by expressing complex reactive behavior in an intuitive and declarative way\cite{Salvaneschi:2017}
+	Reactive programming is a paradigm which provides dedicated programming abstraction for interactive and event-driven applications.
+	As mentioned in the introduction, designing, implementing and maintaining reactive application is not an easy task. 
+	The code of a program is triggered asynchronously by the occurrence of events.
+	For this reason, developers struggle to understand the control flow of an application.
+	The approach of reactive programming is, to express these complex reactive behaviors in an intuitive and declarative way.
+	The following are the core principles of reactive programming~\cite{Salvaneschi:2015,Salvaneschi:2017}:
 
 	\begin{description}
 		\item[Declarativeness] Instead of computational steps, to derive a new component state based on a prior state,
 		programmers address \textit{how} components functionally depend on each other.
-		\item[Abstraction over change propagation] Change Propagation of dependent values is done implicit by the underlying runtime instead of manually by the developer.
-		\item[Composability] Reactive computations can be composed to more complex computations by means of provided abstractions (e.g., combinators/operator for event streams).
+		\item[Abstraction over change propagation] Change Propagation of dependent values is done implicit by the underlying execution model instead of manually by the developer.
+		\item[Composability] Reactive computations can be composed to more complex computations by using provided abstractions (e.g., combinators/operator for event streams).
 		\item[Favoring data flow over control flow] Normally the excecution of an application follows the control flow. 
 		In reactive programming the computation is driven by events and data and how they flow through the system.
 	\end{description}
+
+	To explain these principle a short example is given:
+
+	\begin{lstlisting}
+		var1 = 1
+		var2 = 2
+		var3 = var1 + var2
+	\end{lstlisting}
+
+	In conventional sequential imperative programming, 
+	the variavle \lstinline|var3| has the initial value of the sum of \lstinline|var1| and \lstinline|var2|, which is 3.
+	And when afterwards a new value is assigned to variable \lstinline|var1| or \lstinline|var2| the value of \lstinline|var3| remains.
+	Only with an explicit assignment, the value of varialbe \lstinline|var3| can be changed. In contrast to reactive programming, 
+	where variable \lstinline|var3| is always up-to-date. Whenever the value of \lstinline|var1| or \lstinline|var2| changes, 
+	the reactive execution model recomputes the new value for \lstinline|var3|~\cite{Bainomugisha:2013}.
 	
-	basic abstractions are:
+	\subsection{Basic abstractions}
+	In reactive programming languages and frameworks two distinguished features or abstractions are used, signals and events.
 	time-varying values(signals or behaviors)
 	event streams
-	automatic tracking of dependencies
-	automated change propagation
+	%automatic tracking of dependencies
+	%automated change propagation
 	\cite{Salvaneschi:2015}
 
 	\subsection{Functional reactive programming}
 		Reactive programming has its origin in Functional reactive programming, a variation for strictly functional languages. 
 		first in functional languages by~\cite{Elliott}
-
+		focus on modeling time in pure functional languages
 		signals behaviour~\cite{Bainomugisha:2013}
 	
 
@@ -368,7 +395,7 @@
 \section{Conclusion}
 
 
-
+%as seen, reactive frameworks evolved and 
 reactive programming gained popularity~\cite{reactiveManifesto2014}, also spread to other fields like cloud computing and big data \cite{Salvaneschi:2015}
 
 glitch avoidance not always important. only in singlethreaded push based enviroments like gui-threads
