@@ -10,6 +10,7 @@
 
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{acronym}
 
 \usepackage{tikz}
 \tikzset{main node/.style={circle,draw,minimum size=1cm,inner sep=0pt},
@@ -105,10 +106,13 @@
 %\received[accepted]{July 2009}
 \usepackage{layouts}
 
-\usepackage[belowskip=-15pt,aboveskip=0pt]{caption}
+%\usepackage[belowskip=-15pt,aboveskip=0pt]{caption}
 
 % Document starts
 \begin{document}
+
+\acrodef{frp}[FRP]{Functional reactive programming}
+%Functional reactive programming(FRP)
 
 %\setlength{\textfloatsep}{\baselineskip plus 0.2\baselineskip minus 0.2\baselineskip}
 % Title portion
@@ -333,7 +337,7 @@
 
 	To explain these principle a short example is given:
 
-	\begin{lstlisting}
+	\begin{lstlisting}[label=lst:referenz]
 		var1 = 1
 		var2 = 2
 		var3 = var1 + var2
@@ -347,27 +351,46 @@
 	the reactive execution model recomputes the new value for \lstinline|var3|~\cite{Bainomugisha:2013}.
 	
 	\subsection{Basic abstractions}
-	In reactive programming languages and frameworks two distinguished features or abstractions are used, signals and events.
-	time-varying values(signals or behaviors)
-	event streams
-	%automatic tracking of dependencies
-	%automated change propagation
-	\cite{Salvaneschi:2015}
+	In reactive programming languages and frameworks two distinguishing features or basic abstractions are used, behaviors and events.
+	As defined in~\cite{Bainomugisha:2013}:
 
-	\subsection{Functional reactive programming}
-		Reactive programming has its origin in Functional reactive programming, a variation for strictly functional languages. 
-		first in functional languages by~\cite{Elliott}
-		focus on modeling time in pure functional languages
-		signals behaviour~\cite{Bainomugisha:2013}
-	
+	\begin{description}
+		\item[Behaviors]
+		Behaviors change over time and can depend on each other. 
+		Behaviors are referred to \textit{time-varying values} and also as \textit{signals}.
+		The variables in the previous example are behaviors. 
+		\item[Events]
+		In contrast to behaviors, events do not change, they occur at discrete points. 
+		They form a (potentially infinite) stream of values.
+	\end{description}
+
+	In reactive programming languages and frameworks these two abstractions are often realized as first-class values.
+	In addition, these first-class values are composable via provided primitive combinators~\cite{Bainomugisha:2013}.
+
+	\subsection{\ac{frp}}
+		Reactive programming has its origin in \ac{frp}. 
+		\ac{frp} was first introduced by~\cite{Elliott} as Functional reactive animations for the programming language Haskell.
+		The concept of behaviors of time-varying values is adapted from \ac{frp}. 
+		In contrast to reactive programming, \ac{frp} is strictly functional and focuses on modeling time.
+
+	\subsection{Different levels of abstractions}
+		Many implementations of rective programming slightly differ in there level of abstraction.
+		Some are restricted to functional or imperative programming, and yet other support both.
+		The way, how the changes are propagated can also differ, so alled Evaluation model.
+		Some implementations uses a \textit{pull-based} approache, where the required computation needs to pull the value from the Source.
+		In the \textit{push-based} approache, on the other hand the source pushes changes as soon as new data arrives.
+		Further informations and advantages and disadvantages about the two evaluation models can be found in~\cite{Bainomugisha:2013}.
 
 \section{Scala.React}
-
+	\textit{Scala.React}~\cite{Maier:2012} is a language extension to provide the reactive programming abstractions.
+	As the name already indicates, it is for the statically typed Scala programming language. 
+	Therefore, it provides a typesafe implementation of the reactive abstractions. 
+	Scala.React supports 
 	\subsection{First class events}
 
 	\subsection{Reactor}
 
-	\subsection{Embedded dataflow langugage}
+	\subsection{Embedded dataflow language}
 
 	\subsection{Glitch avoidance}
 
